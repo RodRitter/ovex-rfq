@@ -5,9 +5,10 @@ const createJestConfig = nextJest({
 });
 
 const config = {
+  preset: 'ts-jest',
   bail: 1,
   clearMocks: true,
-  collectCoverage: true,
+  collectCoverage: false,
   coverageProvider: 'v8',
   projects: [
     {
@@ -30,6 +31,9 @@ const config = {
       testMatch: ['**/tests/integration/**/*.test.[jt]s?(x)'],
       setupFilesAfterEnv: ['<rootDir>/setupTests.ts'],
       testEnvironment: 'jsdom',
+      moduleNameMapper: {
+        '^@/(.*)$': '<rootDir>/$1',
+      },
       transform: {
         '^.+\\.(js|jsx|ts|tsx)$': [
           'babel-jest',

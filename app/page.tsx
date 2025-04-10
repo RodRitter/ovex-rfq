@@ -1,5 +1,6 @@
 'use client';
-import RequestForQuoteCard from '@/containers/cards/RequestForQuoteCard';
+
+import RequestForQuoteCard from '@/containers/cards/request-for-quote/RequestForQuoteCard';
 import TransfersCard from '@/containers/cards/TransfersCard';
 import PortfolioCard from '@/containers/cards/PortfolioCard';
 

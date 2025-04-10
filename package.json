@@ -11,14 +11,16 @@
     "test:unit": "jest --selectProjects unit --silent",
     "test:integration": "jest --selectProjects integration --silent",
     "test:e2e": "playwright test",
-    "test:all": "jest && playwright test"
+    "test:all": "jest --silent && playwright test"
   },
   "dependencies": {
     "dotenv": "^16.4.7",
     "lucide-react": "^0.487.0",
+    "luxon": "^3.6.1",
     "next": "15.2.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "ts-jest": "^29.3.1",
     "zustand": "^5.0.3"
   },
   "devDependencies": {
@@ -34,6 +36,7 @@
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
     "@types/jest": "^29.5.14",
+    "@types/luxon": "^3.6.2",
     "@types/next": "^8.0.7",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -55,7 +58,6 @@
     "jest-environment-jsdom": "^29.7.0",
     "prettier": "^3.5.3",
     "tailwindcss": "^4",
-    "ts-jest": "^29.3.1",
     "ts-node": "^10.9.2",
     "typescript": "^5",
     "typescript-eslint": "^8.29.1"

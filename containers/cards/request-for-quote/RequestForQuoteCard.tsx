@@ -10,7 +10,8 @@ import { Market, MarketData } from '@/lib/types/market';
 import Button, { ButtonSize } from '@/components/Button';
 import TextInput from '@/components/TextInput';
 import { numberToDecimals } from '@/lib/utils/primitive';
-import PopupModal from '@/components/PopupModal';
+import { getQuote } from '@/services/market-service';
+import QuotationModal from './QuotationModal';
 
 const RequestForQuoteCard = () => {
   const { data, loading } = useMarketData();
@@ -23,6 +24,8 @@ const RequestForQuoteCard = () => {
   );
   const [buyAmount, setBuyAmount] = useState<string | null>(null);
   const [quoteModalOpen, setQuoteModalOpen] = useState(false);
+  const [latestQuote, setLatestQuote] = useState<any | null>(null);
+  const [isLoadingQuote, setIsLoadingQuote] = useState(false);
 
   // resets quote currency when base currency is being selected
   useEffect(() => {
@@ -71,8 +74,29 @@ const RequestForQuoteCard = () => {
     setQuoteModalOpen(false);
   };
 
-  const getQuoteCurrencyOptions = (data: MarketData) => {
-    const quoteCurrencyData = data.allMarkets.filter(
+  const fetchQuote = async () => {
+    setIsLoadingQuote(true);
+
+    getQuote(
+      `${baseCurrency}${quoteCurrency}`,
+      String(buyAmount),
+      !isBuy ? 'buy' : 'sell'
+    )
+      .then((response) => {
+        if (response.success) {
+          setLatestQuote(response.data);
+          setQuoteModalOpen(true);
+        } else {
+          // TODO implement error handling in toast notification
+        }
+      })
+      .finally(() => {
+        setIsLoadingQuote(false);
+      });
+  };
+
+  const getQuoteCurrencyOptions = (marketData: MarketData) => {
+    const quoteCurrencyData = marketData.allMarkets.filter(
       (market) => market.baseCurrency === baseCurrency
     );
 
@@ -82,28 +106,34 @@ const RequestForQuoteCard = () => {
     }));
   };
 
-  const hasAmountError = () => {
-    return !buyAmount || Number(buyAmount) === 0;
-  };
+  const hasAmountError = () => !buyAmount || Number(buyAmount) === 0;
 
-  const getAmountInputError = () => {
-    return hasAmountError() ? 'Please enter an amount' : '';
-  };
+  const getAmountInputError = () =>
+    hasAmountError() ? 'Please enter an amount' : '';
 
-  const getAmountPlaceholder = (data: Market, isBase: boolean) => {
-    return numberToDecimals(
+  const getAmountPlaceholder = (marketData: Market, isBase: boolean) =>
+    numberToDecimals(
       0,
-      isBase ? data.baseCurrencyPrecision : data.quoteCurrencyPrecision
+      isBase
+        ? marketData.baseCurrencyPrecision
+        : marketData.quoteCurrencyPrecision
     );
-  };
 
   return (
     <>
-      <PopupModal isOpen={quoteModalOpen} onClose={onQuoteModalClose}>
-        Test
-      </PopupModal>
+      <QuotationModal
+        isOpen={quoteModalOpen}
+        onClose={onQuoteModalClose}
+        latestQuote={latestQuote}
+        selectedMarketData={selectedMarketData}
+      />
 
-      <Card title="Quote" icon={FileText} className="flex flex-col gap-4">
+      <Card
+        title="Quote"
+        icon={FileText}
+        loading={loading}
+        className="flex flex-col gap-4"
+      >
         <CardToggle
           leftLabel="Buy"
           rightLabel="Sell"
@@ -169,11 +199,10 @@ const RequestForQuoteCard = () => {
           <FadeTransition>
             <div className="mt-3">
               <Button
-                onClick={() => {
-                  setQuoteModalOpen(true);
-                }}
+                onClick={fetchQuote}
                 size={ButtonSize.Large}
                 disabled={hasAmountError()}
+                loading={isLoadingQuote}
                 block
               >
                 Get Quote

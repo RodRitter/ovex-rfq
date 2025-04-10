@@ -4,7 +4,19 @@
   "rules": {
     "prettier/prettier": ["error"],
     "camelcase": ["error", { "properties": "never", "ignoreImports": true }],
-    "no-undef": ["off"]
+    "no-undef": ["off"],
+    "import/prefer-default-export": "off",
+    "import/no-unresolved": "off",
+    "import/extensions": [
+      "error",
+      "never",
+      {
+        "ts": "never",
+        "tsx": "never",
+        "js": "ignoreImports",
+        "jsx": "never"
+      }
+    ]
   },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {

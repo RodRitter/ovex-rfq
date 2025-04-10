@@ -40,6 +40,24 @@ describe('Button', () => {
   it('should apply large size styles when size is set to Large', () => {
     render(<Button size={ButtonSize.Large}>Click Me</Button>);
     const button = screen.getByText('Click Me');
-    expect(button).toHaveClass('text-lg py-4 px-4');
+    expect(button).toHaveClass(
+      'bg-primary text-white py-2 px-3 rounded-sm text-sm font-semibold transition-opacity duration-200 cursor-pointer hover:opacity-90 active:opacity-100 disabled:opacity-50 disabled:cursor-default text-lg h-[50px] px-4 relative'
+    );
+  });
+
+  it('should disable the button and show loader when loading is true', () => {
+    render(<Button loading>Click Me</Button>);
+    const button = screen.getByRole('button');
+    expect(button).toBeDisabled();
+    expect(screen.queryByText('Click Me')).toBeNull();
+    expect(button?.querySelector('.loader')).toBeInTheDocument();
+  });
+
+  it('should not show loader when loading is false', () => {
+    render(<Button loading={false}>Click Me</Button>);
+    const button = screen.getByText('Click Me').closest('button');
+    expect(button).not.toBeDisabled();
+    expect(screen.getByText('Click Me')).toBeVisible();
+    expect(button?.querySelector('.loader')).not.toBeInTheDocument();
   });
 });

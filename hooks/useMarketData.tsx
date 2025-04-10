@@ -1,6 +1,6 @@
-import { getMarkets } from '@/lib/services/market-service';
-import { MarketData } from '@/lib/types/market';
 import { create } from 'zustand';
+import { getMarkets } from '@/services/market-service';
+import { MarketData } from '@/lib/types/market';
 
 interface MarketDataState {
   data: MarketData;
@@ -11,9 +11,11 @@ interface MarketDataState {
 const useMarketData = create<MarketDataState>((set) => {
   const fetchMarketData = async () => {
     set({ loading: true });
-    const _mdata = await getMarkets();
-    if (_mdata.success) {
-      set({ data: _mdata.data, loading: false });
+
+    const mdata = await getMarkets();
+
+    if (mdata?.success) {
+      set({ data: mdata.data, loading: false });
     } else {
       set({ loading: false });
     }

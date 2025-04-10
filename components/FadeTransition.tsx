@@ -16,6 +16,7 @@ const FadeTransition: React.FC<{
           'ease-in-out',
           'transform'
         );
+        // eslint-disable-next-line no-void
         void ref.current.offsetWidth; // force reflow
         ref.current.classList.add('duration-200', 'ease-in-out', 'transform');
       }

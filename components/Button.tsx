@@ -16,6 +16,7 @@ interface ButtonProps extends PropsWithChildren {
   variant?: ButtonVariant;
   block?: boolean;
   size?: ButtonSize;
+  loading?: boolean;
 }
 
 const Button = ({
@@ -25,6 +26,7 @@ const Button = ({
   variant = ButtonVariant.Primary,
   block = false,
   size = ButtonSize.Normal,
+  loading = false,
 }: ButtonProps) => {
   const defaultStyles =
     'py-2 px-3 rounded-sm text-sm font-semibold transition-opacity duration-200 cursor-pointer hover:opacity-90 active:opacity-100 disabled:opacity-50 disabled:cursor-default';
@@ -37,17 +39,21 @@ const Button = ({
   const blockStyle = block ? 'w-full' : '';
 
   const sizeStyles = {
-    [ButtonSize.Normal]: 'text-sm py-2 px-3',
-    [ButtonSize.Large]: 'text-lg py-4 px-4',
+    [ButtonSize.Normal]: 'text-sm h-[36px] px-3',
+    [ButtonSize.Large]: 'text-lg h-[50px] px-4',
   };
 
   return (
     <button
-      disabled={disabled}
+      disabled={disabled || loading}
       onClick={onClick}
-      className={`${buttonStyles[variant]} ${blockStyle} ${sizeStyles[size]}`}
+      className={`${buttonStyles[variant]} ${blockStyle} ${sizeStyles[size]} relative`}
     >
-      {children}
+      {loading ? (
+        <span className="loader animate-spin border-2 border-t-transparent border-white rounded-full w-4 h-4 absolute inset-0 m-auto"></span>
+      ) : (
+        children
+      )}
     </button>
   );
 };

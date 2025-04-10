@@ -54,6 +54,7 @@ const CardToggle: React.FC<CardToggleProps> = ({
             transform: `translateX(${isActive ? pillTranslate : 5}px)`,
           }}
         ></div>
+
         {/* Text values */}
         <div className="flex justify-around w-full px-2 text-sm font-bold z-10">
           <span className={`${!isActive ? 'text-black' : 'text-gray-400'}`}>
