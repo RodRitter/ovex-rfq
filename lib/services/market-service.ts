@@ -1,8 +1,8 @@
-import { APIResult } from '../types/core';
-import { MarketData } from '../types/market';
+import { APIResult } from '@/lib/types/core';
+import { MarketData } from '@/lib/types/market';
 
-export const getMarkets = async (): Promise<APIResult<MarketData>> => {
-  return fetch(`${process.env.NEXT_PUBLIC_API_BASE}/markets`)
+export const getMarkets = async (): Promise<APIResult<MarketData>> =>
+  fetch(`${process.env.NEXT_PUBLIC_API_BASE}/markets`)
     .then((response) => {
       if (!response.ok) {
         throw new Error(`Failed to fetch markets: ${response.statusText}`);
@@ -11,19 +11,23 @@ export const getMarkets = async (): Promise<APIResult<MarketData>> => {
       return response.json();
     })
     .then((data) => {
-      const uniqueBaseCurrencies: string[] = Array.from(
-        new Map<string, string>(
-          data.map((market: any) => [
-            market.base_currency as string,
-            market.base_currency_long as string,
-          ])
-        ).values()
-      );
+      const uniqueBaseCurrencies: { label: string; value: string }[] =
+        Array.from(
+          new Map<string, { label: string; value: string }>(
+            data.map((market: any) => [
+              market.base_currency as string,
+              {
+                label: market.base_currency_long as string,
+                value: market.base_currency as string,
+              },
+            ])
+          ).values()
+        );
 
       return {
         success: true as const,
         data: {
-          baseMarketNames: uniqueBaseCurrencies,
+          baseMarkets: uniqueBaseCurrencies,
           allMarkets: data.map((market: any) => ({
             baseCurrency: market.base_currency,
             baseCurrencyName: market.base_currency_long,
@@ -39,4 +43,3 @@ export const getMarkets = async (): Promise<APIResult<MarketData>> => {
       success: false as const,
       error: error.message,
     }));
-};

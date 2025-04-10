@@ -57,4 +57,25 @@ describe('Dropdown Component', () => {
     fireEvent.click(screen.getByText('Option 3'));
     expect(screen.getByText('Option 3')).toBeInTheDocument();
   });
+
+  it('calls onToggle with true when dropdown is opened and false when closed', () => {
+    const handleToggle = jest.fn();
+    render(
+      <Dropdown options={options} onChange={() => {}} onToggle={handleToggle} />
+    );
+    fireEvent.click(screen.getByText('Select an option'));
+    expect(handleToggle).toHaveBeenCalledWith(true);
+    fireEvent.mouseDown(document.body);
+    expect(handleToggle).toHaveBeenCalledWith(false);
+  });
+
+  it('applies correct styles to dropdown panel when opened', () => {
+    render(<Dropdown options={options} onChange={() => {}} />);
+    const dropdownTrigger = screen.getByText('Select an option');
+    fireEvent.click(dropdownTrigger);
+    const dropdownPanel = document.querySelector('ul');
+    expect(dropdownPanel).toHaveStyle('position: absolute');
+    expect(dropdownPanel).toHaveStyle('top: 0px');
+    expect(dropdownPanel).toHaveStyle('left: 0px');
+  });
 });

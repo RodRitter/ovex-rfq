@@ -20,7 +20,7 @@ const useMarketData = create<MarketDataState>((set) => {
   };
 
   const store: MarketDataState = {
-    data: { allMarkets: [], baseMarketNames: [] },
+    data: { allMarkets: [], baseMarkets: [] },
     loading: false,
     fetchMarketData,
   };

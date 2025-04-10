@@ -8,6 +8,6 @@ export type Market = {
 };
 
 export type MarketData = {
-  baseMarketNames: string[];
+  baseMarkets: { label: string; value: string }[];
   allMarkets: Market[];
 };

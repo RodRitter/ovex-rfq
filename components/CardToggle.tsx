@@ -43,12 +43,12 @@ const CardToggle: React.FC<CardToggleProps> = ({
     <div className="flex justify-center items-center">
       <div
         ref={containerRef}
-        className="relative w-full h-[50px] bg-accent rounded-xl flex items-center cursor-pointer select-none"
+        className="relative w-full h-[50px] bg-accent rounded-sm flex items-center cursor-pointer select-none"
         onClick={toggle}
       >
         {/* Pill */}
         <div
-          className={`absolute h-[40px] bg-white rounded-lg transition-transform duration-200`}
+          className={`absolute h-[40px] bg-white rounded-sm transition-transform duration-200`}
           style={{
             width: `${pillWidth}px`,
             transform: `translateX(${isActive ? pillTranslate : 5}px)`,

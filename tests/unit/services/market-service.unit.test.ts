@@ -39,7 +39,10 @@ describe('getMarkets', () => {
     expect(result).toEqual({
       success: true,
       data: {
-        baseMarketNames: ['Bitcoin', 'Ethereum'],
+        baseMarkets: [
+          { label: 'Bitcoin', value: 'btc' },
+          { label: 'Ethereum', value: 'eth' },
+        ],
         allMarkets: [
           {
             baseCurrency: 'btc',
