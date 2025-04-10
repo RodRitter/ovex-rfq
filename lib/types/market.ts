@@ -6,3 +6,8 @@ export type Market = {
   quoteCurrencyName: string;
   quoteCurrencyPrecision: number;
 };
+
+export type MarketData = {
+  baseMarketNames: string[];
+  allMarkets: Market[];
+};

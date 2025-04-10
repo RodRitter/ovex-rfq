@@ -1,4 +1,4 @@
-import { getMarkets } from '@/app/lib/services/market-service';
+import { getMarkets } from '@/lib/services/market-service';
 
 describe('getMarkets', () => {
   beforeEach(() => {
@@ -38,28 +38,31 @@ describe('getMarkets', () => {
 
     expect(result).toEqual({
       success: true,
-      data: [
-        {
-          baseCurrency: 'btc',
-          baseCurrencyName: 'Bitcoin',
-          baseCurrencyPrecision: 8,
-          quoteCurrency: 'usd',
-          quoteCurrencyName: 'US Dollar',
-          quoteCurrencyPrecision: 2,
-        },
-        {
-          baseCurrency: 'eth',
-          baseCurrencyName: 'Ethereum',
-          baseCurrencyPrecision: 8,
-          quoteCurrency: 'usd',
-          quoteCurrencyName: 'US Dollar',
-          quoteCurrencyPrecision: 2,
-        },
-      ],
+      data: {
+        baseMarketNames: ['Bitcoin', 'Ethereum'],
+        allMarkets: [
+          {
+            baseCurrency: 'btc',
+            baseCurrencyName: 'Bitcoin',
+            baseCurrencyPrecision: 8,
+            quoteCurrency: 'usd',
+            quoteCurrencyName: 'US Dollar',
+            quoteCurrencyPrecision: 2,
+          },
+          {
+            baseCurrency: 'eth',
+            baseCurrencyName: 'Ethereum',
+            baseCurrencyPrecision: 8,
+            quoteCurrency: 'usd',
+            quoteCurrencyName: 'US Dollar',
+            quoteCurrencyPrecision: 2,
+          },
+        ],
+      },
     });
 
     expect(global.fetch).toHaveBeenCalledWith(
-      `${process.env.API_BASE}/markets`
+      `${process.env.NEXT_PUBLIC_API_BASE}/markets`
     );
   });
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import Button, { ButtonVariant } from '../components/Button';
+import Button, { ButtonVariant } from '@/components/Button';
 import Brand from './Brand';
 
 const NavBar = () => {

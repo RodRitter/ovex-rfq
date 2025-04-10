@@ -4,11 +4,14 @@ import { LucideIcon } from 'lucide-react';
 interface CardProps extends PropsWithChildren {
   title?: string;
   icon?: LucideIcon;
+  className?: string;
 }
 
-const Card = ({ children, title, icon: Icon }: CardProps) => {
+const Card = ({ children, title, icon: Icon, className }: CardProps) => {
   return (
-    <div className="max-w-7xl bg-white flex-1 rounded-lg p-4 shadow">
+    <div
+      className={`max-w-7xl bg-white flex-1 rounded-lg p-4 shadow ${className}`}
+    >
       {title && (
         <div className="flex items-center mb-4">
           {Icon && <Icon size={20} />}

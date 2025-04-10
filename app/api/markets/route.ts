@@ -1,4 +1,4 @@
-import { getMarkets } from '@/app/lib/services/market-service';
+import { getMarkets } from '@/lib/services/market-service';
 
 export const dynamic = 'force-static';
 export const revalidate = 60;

@@ -139,6 +139,34 @@ We follow a Test-Driven Development (TDD) approach, using the Red, Green, Refact
 
 By following this flow, the team builds up the codebase piece by piece, keeping it reliable and easy to work with as it grows.
 
+### AI Usage Guidelines
+
+We use AI tools like GitHub Copilot to speed up development and testing — but always in support of our TDD principles.
+
+If you're using Copilot or any AI tool, follow this flow to stay aligned with our development standards:
+
+- **Write the spec first**: Clearly describe the feature or function in plain text. This guides AI tools to generate meaningful tests.
+- **Generate tests from the spec**: Use AI to scaffold your test cases before writing any implementation code.
+- **Run tests to confirm failure (Red)**: Validate that the tests fail initially, as expected.
+- **Implement code to pass the tests (Green)**: Write the simplest code to satisfy the test cases.
+- **Refactor and improve**: Clean up both code and tests, with AI-assisted suggestions if helpful.
+- **Use AI for additional edge cases**: Prompt AI to suggest boundary conditions and edge scenarios for better coverage.
+
+#### Best Practices
+
+- **Spec-first**: Always start with a clear, written spec.
+- **Stay TDD**: Maintain the Red-Green-Refactor cycle.
+- **Edge Cases**: Use AI to enhance coverage after primary tests are in place.
+- **Review AI output**: Treat AI-generated code like any code — review, test, and validate.
+
+#### What to Avoid
+
+- Don't skip writing specs and rely only on Copilot.
+- Don’t generate tests after the implementation — stick to test-first.
+- Don’t bypass code review for AI-generated code.
+
+AI is a great accelerator, but we stay in control of code quality and intent. Follow the flow, and AI becomes a powerful assistant — not a shortcut.
+
 ## Branching & Commit Guidelines
 
 We have 3 main branches:

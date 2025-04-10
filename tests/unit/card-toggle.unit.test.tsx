@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import CardToggle from '../../app/components/CardToggle';
+import CardToggle from '../../components/CardToggle';
 
 describe('CardToggle Component', () => {
   it('renders with the correct labels', () => {
