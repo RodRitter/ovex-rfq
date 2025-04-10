@@ -5,7 +5,7 @@ interface CardProps extends PropsWithChildren {
   title?: string;
   icon?: LucideIcon;
   className?: string;
-  loading?: boolean; // Added loading prop
+  loading?: boolean;
 }
 
 const Card = ({

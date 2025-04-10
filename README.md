@@ -123,7 +123,7 @@ await expect(page.locator('text=Current count is 1')).toBeVisible();
 
 ## Our Development Principles
 
-We follow a Test-Driven Development (TDD) approach, using the Red, Green, Refactor cycle to build features with clear intent, meaningful test coverage, and natural maintainability. This creates a robust test suite, catches issues early, and makes future changes faster and safer.
+We use Test-Driven Development (TDD) to build features with clear intent and reliable test coverage. By following the Red, Green, Refactor cycle, we catch issues early and keep our codebase easy to maintain and evolve over time.
 
 #### Example
 

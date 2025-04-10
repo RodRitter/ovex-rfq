@@ -4,7 +4,6 @@ import Typography from '@/components/Typography';
 import QuotationModalListItem from './QuotationModalListItem';
 import { Market } from '@/lib/types/market';
 import { numberToDecimals } from '@/lib/utils/primitive';
-import { DateTime } from 'luxon';
 import { CountdownTimer } from '@/components/CountdownTimer';
 import Button, { ButtonSize } from '@/components/Button';
 
