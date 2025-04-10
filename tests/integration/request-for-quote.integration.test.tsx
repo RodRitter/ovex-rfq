@@ -44,15 +44,18 @@ describe('RequestForQuoteCard Integration Tests', () => {
     render(<RequestForQuoteCard />);
 
     const baseDropdown = screen.getByText('Select currency').closest('div');
-
-    fireEvent.click(baseDropdown);
-    fireEvent.click(screen.getByText('BTC'));
+    if (baseDropdown) {
+      fireEvent.click(baseDropdown);
+      fireEvent.click(screen.getByText('BTC'));
+    }
 
     expect(screen.getByText('BTC')).toBeInTheDocument();
 
     const quoteDropdown = screen.getByText('Select currency').closest('div');
-    fireEvent.click(quoteDropdown);
-    fireEvent.click(screen.getByText('USD'));
+    if (quoteDropdown) {
+      fireEvent.click(quoteDropdown);
+      fireEvent.click(screen.getByText('USD'));
+    }
 
     expect(screen.getByText('USD')).toBeInTheDocument();
   });
@@ -61,12 +64,16 @@ describe('RequestForQuoteCard Integration Tests', () => {
     render(<RequestForQuoteCard />);
 
     const baseDropdown = screen.getByText('Select currency').closest('div');
-    fireEvent.click(baseDropdown);
-    fireEvent.click(screen.getByText('BTC'));
+    if (baseDropdown) {
+      fireEvent.click(baseDropdown);
+      fireEvent.click(screen.getByText('BTC'));
+    }
 
     const quoteDropdown = screen.getByText('Select currency').closest('div');
-    fireEvent.click(quoteDropdown);
-    fireEvent.click(screen.getByText('USD'));
+    if (quoteDropdown) {
+      fireEvent.click(quoteDropdown);
+      fireEvent.click(screen.getByText('USD'));
+    }
 
     const getQuoteButton = screen.getByText('Get Quote');
     fireEvent.click(getQuoteButton);
@@ -83,12 +90,16 @@ describe('RequestForQuoteCard Integration Tests', () => {
     render(<RequestForQuoteCard />);
 
     const baseDropdown = screen.getByText('Select currency').closest('div');
-    fireEvent.click(baseDropdown);
-    fireEvent.click(screen.getByText('BTC'));
+    if (baseDropdown) {
+      fireEvent.click(baseDropdown);
+      fireEvent.click(screen.getByText('BTC'));
+    }
 
     const quoteDropdown = screen.getByText('Select currency').closest('div');
-    fireEvent.click(quoteDropdown);
-    fireEvent.click(screen.getByText('USD'));
+    if (quoteDropdown) {
+      fireEvent.click(quoteDropdown);
+      fireEvent.click(screen.getByText('USD'));
+    }
 
     const amountInput = screen.getByPlaceholderText('0.00000000');
     fireEvent.change(amountInput, { target: { value: '1' } });
@@ -110,12 +121,16 @@ describe('RequestForQuoteCard Integration Tests', () => {
     render(<RequestForQuoteCard />);
 
     const baseDropdown = screen.getByText('Select currency').closest('div');
-    fireEvent.click(baseDropdown);
-    fireEvent.click(screen.getByText('BTC'));
+    if (baseDropdown) {
+      fireEvent.click(baseDropdown);
+      fireEvent.click(screen.getByText('BTC'));
+    }
 
     const quoteDropdown = screen.getByText('Select currency').closest('div');
-    fireEvent.click(quoteDropdown);
-    fireEvent.click(screen.getByText('USD'));
+    if (quoteDropdown) {
+      fireEvent.click(quoteDropdown);
+      fireEvent.click(screen.getByText('USD'));
+    }
 
     const amountInput = screen.getByPlaceholderText('0.00000000');
     fireEvent.change(amountInput, { target: { value: '1' } });
